@@ -1,0 +1,55 @@
+name:                haskell-aoc2021
+version:             0.1.0.0
+github:              "lesguillemets/aoc2021"
+license:             BSD3
+author:              "lesguillemets"
+maintainer:          "see_github@example.com"
+copyright:           "2021 lesguillemets"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Personal solution
+
+dependencies:
+- base >= 4.7 && < 5
+
+library:
+  source-dirs: src
+
+_exe-defs: &days-defaults
+  source-dirs: app
+  other-modules: []
+  dependencies: [ haskell-aoc2021 ]
+  ghc-options:
+    - -O2
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+
+executables:
+  Day01:
+    <<: *days-defaults
+    main:                Day01.hs
+  Day02:
+    <<: *days-defaults
+    main:                Day02.hs
+
+tests:
+  haskell-aoc2021-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - haskell-aoc2021
